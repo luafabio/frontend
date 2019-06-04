@@ -9,6 +9,8 @@ import Add from './components/Add'
 import StopDetails from './components/StopDetails'
 import Edit from './components/Edit'
 import Buses from './components/Buses'
+import Map from './components/Map'
+import Cover from './components/Cover'
 import VeeValidate from 'vee-validate'
 
 Vue.use(VeeValidate);
@@ -22,12 +24,14 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    {path: '/', component: Stops},
+    {path: '/', component: Cover},
+    {path: '/stops', component: Stops},
     {path: '/about', component: About},
     {path: '/add', component: Add},
     {path: '/stop/:id', component: StopDetails},
     {path: '/edit/:id', component: Edit},
-    {path: '/buses', component: Buses}
+    { path: '/buses', component: Buses },
+    { path: '/map', component: Map }
   ]
 });
 
@@ -45,12 +49,13 @@ new Vue({
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">vStops</a>
+          <a class="navbar-brand" href="#">Hermes</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><router-link to="/">Stops</router-link></li>
+            <li><router-link to="/stops">Stops</router-link></li>
             <li><router-link to="/buses">Buses</router-link></li>
+            <li><router-link to="/map">Map</router-link></li>
             <li><router-link to="/about">About</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
