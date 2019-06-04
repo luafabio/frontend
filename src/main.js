@@ -9,13 +9,18 @@ import Add from './components/Add'
 import StopDetails from './components/StopDetails'
 import Edit from './components/Edit'
 import Buses from './components/Buses'
-import Map from './components/Map'
 import Cover from './components/Cover'
 import VeeValidate from 'vee-validate'
+import * as LocationPicker from 'vue2-location-picker'
 
-Vue.use(VeeValidate);
+Vue.use(LocationPicker, {
+  installComponents: false, // If true, create it globally
+})
+// Vue.use(VeeValidate);
 
 Vue.config.productionTip = false;
+
+
 
 Vue.use(vueResource);
 Vue.use(VueRouter);
