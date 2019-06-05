@@ -3,7 +3,7 @@
     <Alert v-if="alert" v-bind:message="alert"/>
     <h1 class="page-header">Add Stop</h1>
     <location-picker class="my-20 borde" v-model="location" :options="options"></location-picker>
-    <button class="btn btn-success" v-on:click="cord">Cargar coordenadas</button>
+    <button class="btn btn-success btn-mg" v-on:click="cord">Cargar coordenadas</button>
 
     <form v-on:submit="addStop">
       <div class="well">
@@ -130,4 +130,7 @@
   border: 1px solid black;
 }
 
+.btn-mg {
+  margin-bottom: 20px;
+}
 </style>

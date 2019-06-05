@@ -2,9 +2,10 @@
   <div class="edit container">
    <Alert v-if="alert" v-bind:message="alert" />
     <h1 class="page-header">Edit Stop</h1>
+    
 
     <location-picker v-model="location" :options="options" class="margen borde"></location-picker>
-    <button class="btn btn-success" v-on:click="cord">Cargar coordenadas</button>
+    <button class="btn btn-success btn-mg" v-on:click="cord">Cargar coordenadas</button>
 
     <form v-on:submit="updateStop">
       <div class="well">
@@ -12,9 +13,9 @@
 
          <div class="form-group">
                <label>Latitude</label>
-               <input type="text" class="form-control" placeholder="Latitud" v-model="stop.lat">
+               <input type="text" readonlylass="form-control" placeholder="Latitud" v-model="stop.lat">
                <label>Longitude</label>
-               <input type="text" class="form-control" placeholder="Longitud" v-model="stop.long">
+               <input type="text" readonly class="form-control" placeholder="Longitud" v-model="stop.long">
                <br>
                <label>Status</label>
                <input type="radio" id="radio" name="status" value="true" v-model="stop.status"/>Active
@@ -54,14 +55,21 @@ const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/'
           marker: { /** marker options **/ },
           autocomplete: { /** autocomplete options **/ }
         },
-        stop: '',
+        stop: {
+          lat: '',
+          long: '',
+          status: '',
+          num_stop: '',
+          name: ''
+        },
         alert:''
       }
     },
     methods: {
       fijar() {
-        location.lat = stop.lat;
-        location.lng = stop.long
+        this.location.lat = this.stop.lat;
+        this.location.lng = this.stop.long;
+        console.log(this.stop.lat);
       },
         fetchStop(id){
           /* this.$http.get('http://localhost/stops/public/api/stop/'+id)
@@ -110,8 +118,8 @@ const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/'
       }
     },
     created: function(){
-        this.fijar();
         this.fetchStop(this.$route.params.id);
+        this.fijar();
     },
     components: {
         Alert,
@@ -130,4 +138,7 @@ const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/'
   border: 1px solid black;
 }
 
+.btn-mg {
+  margin-bottom: 20px;
+}
 </style>
