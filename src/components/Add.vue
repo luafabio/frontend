@@ -12,11 +12,11 @@
         </div>
         <div class="form-group">
           <label>Latitude</label>
-          <input type="text" class="form-control" placeholder="Latitude" v-model="stop.lat">
+          <input type="text" readonly class="form-control" placeholder="Latitude" v-model="stop.lat">
         </div>
         <div class="form-group">
           <label>Longitude</label>
-          <input type="text" class="form-control" placeholder="Longitude" v-model="stop.long">
+          <input type="text"  readonly class="form-control" placeholder="Longitude" v-model="stop.long">
         </div>
 
         <div class="form-group">
@@ -56,8 +56,8 @@
     data() {
       return {
         location: {
-          lat: -34.097403,
-          lng: -59.037281
+          lat: -34.0957245,
+          lng: -59.0213171
         },
         options: { // is not required
           map: {/** other map options **/},
@@ -76,8 +76,8 @@
     },
     methods: {
       cord(){
-        this.stop.lat = this.location.lat;
-        this.stop.long = this.location.lng;
+        this.stop.lat = this.location.lat.toFixed(6);
+        this.stop.long = this.location.lng.toFixed(6);
       },
       addStop(e) {
         if (!this.stop.lat || !this.stop.long || !this.stop.num_stop || !this.stop.name) {
@@ -106,7 +106,7 @@
               name: this.stop.name
             }
           });
-          this.$router.push({path: '/', query: {alert: 'Stop Added'}});
+          this.$router.push({path: '/stops', query: {alert: 'Stop Added'}});
           e.preventDefault();
         }
         e.preventDefault();

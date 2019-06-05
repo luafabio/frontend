@@ -53,7 +53,7 @@ export default {
          this.$router.push({path: '/', query: {alert: 'Stop Deleted'}});
       }); */
       axios.delete(`${BASE_URL}stops/`+id);
-      this.$router.push({path: '/', query: {alert: 'Stop Deleted'}});
+      this.$router.push({path: '/stops', query: {alert: 'Stop Deleted'}});
      }
   },
   created: function() {

@@ -2,9 +2,14 @@
   <div class="edit container">
    <Alert v-if="alert" v-bind:message="alert" />
     <h1 class="page-header">Edit Stop</h1>
+
+    <location-picker v-model="location" :options="options"></location-picker>
+    <button class="btn btn-success" v-on:click="cord">Cargar coordenadas</button>
+
     <form v-on:submit="updateStop">
       <div class="well">
          <h4>Stop Info</h4>
+
          <div class="form-group">
                <label>Latitude</label>
                <input type="text" class="form-control" placeholder="Latitud" v-model="stop.lat">
@@ -31,33 +36,41 @@
 <script>
 import Alert from './Alert'
 import axios from 'axios'
+import {LocationPicker} from 'vue2-location-picker' 
 const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/'
 
     export default {
     name: 'edit',
     data () {
       return {
-        stop: {
-          lat: '',
-          long: '',
-          status: '',
-          num_stop: '',
-          name: ''
+        location: {
+          lat: -34.095724,
+          lng: -59.021317
+          // lat : stop.lat,
+          // lng : stop.long
         },
+        options: { // is not required
+          map: {/** other map options **/},
+          marker: { /** marker options **/ },
+          autocomplete: { /** autocomplete options **/ }
+        },
+        stop: '',
         alert:''
       }
     },
     methods: {
+      fijar() {
+        location.lat = stop.lat;
+        location.lng = stop.long
+      },
         fetchStop(id){
-/*           this.$http.get('http://localhost/stops/public/api/stop/'+id)
+          /* this.$http.get('http://localhost/stops/public/api/stop/'+id)
           .then(function(response){
             this.stop = JSON.parse(JSON.stringify(response.body));
             }); */
         axios.get(`${BASE_URL}stops/`+id)
           .then(resp => {
-            //let result = resp.data;
             this.stop = JSON.parse(JSON.stringify(resp.data));
-            // console.log(result);
         });
         },
         updateStop(e){
@@ -86,17 +99,23 @@ const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/'
                 name: this.stop.name
               }
             })
-          this.$router.push({path:'/', query: {alert: 'Stop Updated'}});
+          this.$router.push({path:'/stops', query: {alert: 'Stop Updated'}});
           e.preventDefault();
          }
          e.preventDefault();
-        }
+        },
+        cord(){
+        this.stop.lat = this.location.lat.toFixed(6);
+        this.stop.long = this.location.lng.toFixed(6);
+      }
     },
     created: function(){
         this.fetchStop(this.$route.params.id);
+        //this.fijar();
     },
     components: {
-        Alert
+        Alert,
+        LocationPicker
     }
 }
 </script>
