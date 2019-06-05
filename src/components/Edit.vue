@@ -3,7 +3,7 @@
    <Alert v-if="alert" v-bind:message="alert" />
     <h1 class="page-header">Edit Stop</h1>
 
-    <location-picker v-model="location" :options="options"></location-picker>
+    <location-picker v-model="location" :options="options" class="margen borde"></location-picker>
     <button class="btn btn-success" v-on:click="cord">Cargar coordenadas</button>
 
     <form v-on:submit="updateStop">
@@ -110,8 +110,8 @@ const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/'
       }
     },
     created: function(){
+        this.fijar();
         this.fetchStop(this.$route.params.id);
-        //this.fijar();
     },
     components: {
         Alert,
@@ -122,5 +122,12 @@ const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/'
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.margen {
+  margin-bottom: 20px;
+}
+
+.borde {
+  border: 1px solid black;
+}
 
 </style>

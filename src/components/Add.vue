@@ -2,7 +2,7 @@
   <div class="add container">
     <Alert v-if="alert" v-bind:message="alert"/>
     <h1 class="page-header">Add Stop</h1>
-    <location-picker v-model="location" :options="options"></location-picker>
+    <location-picker class="my-20 borde" v-model="location" :options="options"></location-picker>
     <button class="btn btn-success" v-on:click="cord">Cargar coordenadas</button>
 
     <form v-on:submit="addStop">
@@ -122,5 +122,12 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.my-20 {
+  margin-bottom: 20px;
+}
+
+.borde {
+  border: 1px solid black;
+}
 
 </style>
