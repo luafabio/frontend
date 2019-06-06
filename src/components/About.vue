@@ -1,7 +1,14 @@
 <template>
   <div class="about container">
     <h1 class="page-header">About</h1>
-    <p>This is a bus stop manager built with the Vue.js framework by Ghost</p>
+    <p>Hermes Project Solutions Systems</p>
+    <p>Proyecto Final realizado para la UTN - Facultad Regional Delta</p>
+    Integrantes:<ul>
+      <li>Luis Fabio</li>
+      <li>Agustin Palau</li>
+      <li>Nicolas Rodriguez</li>
+    </ul>
+    <p>Año 2019</p>
     <p>Version 1.0.0</p>
   </div>
 </template>

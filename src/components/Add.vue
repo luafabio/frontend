@@ -112,7 +112,6 @@
         e.preventDefault();
       }
     },
-
     components: {
       Alert,
       LocationPicker
@@ -122,15 +121,5 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.my-20 {
-  margin-bottom: 20px;
-}
 
-.borde {
-  border: 1px solid black;
-}
-
-.btn-mg {
-  margin-bottom: 20px;
-}
 </style>

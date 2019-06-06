@@ -4,7 +4,7 @@
     <h1 class="page-header">Edit Stop</h1>
     
 
-    <location-picker v-model="location" :options="options" class="margen borde"></location-picker>
+    <location-picker v-model="location" :options="options" class="margen borde" v-></location-picker>
     <button class="btn btn-success btn-mg" v-on:click="cord">Cargar coordenadas</button>
 
     <form v-on:submit="updateStop">
@@ -13,7 +13,7 @@
 
          <div class="form-group">
                <label>Latitude</label>
-               <input type="text" readonlylass="form-control" placeholder="Latitud" v-model="stop.lat">
+               <input type="text" readonly class="form-control" placeholder="Latitud" v-model="stop.lat">
                <label>Longitude</label>
                <input type="text" readonly class="form-control" placeholder="Longitud" v-model="stop.long">
                <br>
@@ -47,30 +47,19 @@ const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/'
         location: {
           lat: -34.095724,
           lng: -59.021317
-          // lat : stop.lat,
-          // lng : stop.long
+          //lat : this.stop.lat,
+          //lng : this.stop.long
         },
         options: { // is not required
           map: {/** other map options **/},
           marker: { /** marker options **/ },
           autocomplete: { /** autocomplete options **/ }
         },
-        stop: {
-          lat: '',
-          long: '',
-          status: '',
-          num_stop: '',
-          name: ''
-        },
+        stop: '',
         alert:''
       }
     },
     methods: {
-      fijar() {
-        this.location.lat = this.stop.lat;
-        this.location.lng = this.stop.long;
-        console.log(this.stop.lat);
-      },
         fetchStop(id){
           /* this.$http.get('http://localhost/stops/public/api/stop/'+id)
           .then(function(response){
@@ -119,7 +108,6 @@ const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/'
     },
     created: function(){
         this.fetchStop(this.$route.params.id);
-        this.fijar();
     },
     components: {
         Alert,
@@ -130,15 +118,5 @@ const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/'
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.margen {
-  margin-bottom: 20px;
-}
 
-.borde {
-  border: 1px solid black;
-}
-
-.btn-mg {
-  margin-bottom: 20px;
-}
 </style>
