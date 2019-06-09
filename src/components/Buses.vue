@@ -4,6 +4,7 @@
     <h1 class="page-header">Buses</h1>
     <!-- <input class="form-control" placeholder="Enter Imei's Buse Name" v-model="filterInput"> -->
     <br>
+
     <table class="table table-striped">
       <thead>
       <tr>
@@ -14,12 +15,14 @@
       </tr>
       </thead>
       <tbody>
-      <!-- <tr v-for="bus in filterBy(buses, filterInput)"> -->
-        <tr v-for="bus in buses">
+      <tr v-for="bus in buses">
         <td>{{bus.imei}}</td>
         <td>{{bus.lat}}</td>
         <td>{{bus.long}}</td>
         <td>{{bus.next_stop}}</td>
+        <td>
+          <router-link class="btn btn-default" v-bind:to="'/bus/'+bus._id">Ver Recorrido</router-link>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -29,49 +32,49 @@
 <script>
   import Alert from './Alert';
   import axios from 'axios';
+
   const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/';
 
   export default {
     name: 'buses',
     data() {
       return {
+        center: {
+          lat: -34.097403,
+          lng: -59.037281
+        },
+        markersBus: [],
+        markersStop: [],
         buses: [],
+        stops: [],
         alert: '',
-        filterInput: ''
+        filterInput: '',
       }
     },
     methods: {
-      fetchStops() {
+      fetchBuses() {
         axios.get(`${BASE_URL}list-buses`)
           .then(resp => {
             this.buses = JSON.parse(JSON.stringify(resp.data));
-          });
+          })
       },
-      // filterBy(list, value) {
-      //   value = value.charAt(0).toUpperCase() + value.slice(1);
-      //   return list.filter(function (bus) {
-      //     return bus.imei.indexOf(value) > -1;
-      //   });
-      // }
     },
     created: function () {
       if (this.$route.query.alert) {
         this.alert = this.$route.query.alert;
       }
-      this.fetchStops();
+      this.fetchBuses();
     }
     ,
     updated: function () {
-      this.fetchStops();
-    }
-    ,
+      this.fetchBuses()
+    },
     components: {
       Alert
     }
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>

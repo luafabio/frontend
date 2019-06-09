@@ -3,7 +3,6 @@
     <Alert v-if="alert" v-bind:message="alert"/>
     <h1 class="page-header">Add Stop</h1>
     <location-picker class="my-20 borde" v-model="location" :options="options"></location-picker>
-    <button class="btn btn-success btn-mg" v-on:click="cord">Cargar coordenadas</button>
 
     <form v-on:submit="addStop">
       <div class="well">
@@ -73,6 +72,12 @@
         },
         alert: ''
       }
+    },
+    watch: {
+      location: function (val, oldVal) {
+        this.stop.lat = val.lat.toFixed(6);
+        this.stop.long = val.lng.toFixed(6);
+      },
     },
     methods: {
       cord(){

@@ -4,7 +4,6 @@
     <h1 class="page-header">Edit Stop</h1>
 
     <location-picker v-model="location" :options="options" class="margen borde"></location-picker>
-    <button class="btn btn-success btn-mg" v-on:click="cord">Cargar coordenadas</button>
 
     <form v-on:submit="updateStop">
       <div class="well">
@@ -46,25 +45,26 @@
         location: {
           lat: -34.095724,
           lng: -59.021317
-          //lat : this.stop.lat,
-          //lng : this.stop.long
         },
-        options: { // is not required
-          map: {/** other map options **/},
-          marker: { /** marker options **/},
+        options: {
+          map: {
+            zoom: 15
+          },
+          marker: {
+          },
           autocomplete: { /** autocomplete options **/}
         },
         stop: '',
-        alert:''
+        alert: ''
       }
     },
-    methods: {
-      watch: {
-        location: function (val, oldVal) {
-          this.stop.lat = val.lat;
-          this.stop.long = val.lng;
-        }
+    watch: {
+      location: function (val, oldVal) {
+        this.stop.lat = val.lat.toFixed(6);
+        this.stop.long = val.lng.toFixed(6);
       },
+    },
+    methods: {
       fetchStop(id) {
         axios.get(`${BASE_URL}stops/` + id)
           .then(resp => {
@@ -101,20 +101,16 @@
           e.preventDefault();
         }
         e.preventDefault();
-      },
-      cord() {
-        this.stop.lat = this.location.lat.toFixed(6);
-        this.stop.long = this.location.lng.toFixed(6);
       }
     },
-    created: function(){
-        this.fetchStop(this.$route.params.id);
+    created: function () {
+      this.fetchStop(this.$route.params.id);
     },
     components: {
       Alert,
       LocationPicker
     },
-}
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

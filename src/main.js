@@ -12,15 +12,23 @@ import Buses from './components/Buses'
 import Cover from './components/Cover'
 import VeeValidate from 'vee-validate'
 import * as LocationPicker from 'vue2-location-picker'
+import * as VueGoogleMaps from 'vue2-google-maps'
+import BusDetail from "./components/BusDetail";
+
 
 Vue.use(LocationPicker, {
   installComponents: false, // If true, create it globally
-})
-// Vue.use(VeeValidate);
+});
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBCXAzjr6KjZZDAyLu_P8co4UgX8aL78vU',
+  }
+});
+
+Vue.use(VeeValidate);
 
 Vue.config.productionTip = false;
-
-
 
 Vue.use(vueResource);
 Vue.use(VueRouter);
@@ -35,8 +43,8 @@ const router = new VueRouter({
     {path: '/add', component: Add},
     {path: '/stop/:id', component: StopDetails},
     {path: '/edit/:id', component: Edit},
-    { path: '/buses', component: Buses },
-    { path: '/map', component: Map }
+    {path: '/buses', component: Buses},
+    {path: '/bus/:id', component: BusDetail},
   ]
 });
 
@@ -58,12 +66,12 @@ new Vue({
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><router-link to="/stops">Stops</router-link></li>
-            <li><router-link to="/buses">Buses</router-link></li>
-            <li><router-link to="/about">About</router-link></li>
+            <li><router-link to="/stops">Paradas</router-link></li>
+            <li><router-link to="/buses">Colectivos</router-link></li>
+            <li><router-link to="/about">Nosotros</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link to="/add">Add Stop</router-link></li>
+            <li><router-link to="/add">Agregar Stop</router-link></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

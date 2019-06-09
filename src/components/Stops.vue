@@ -2,6 +2,20 @@
   <div class="stops container">
     <Alert v-if="alert" v-bind:message="alert"/>
     <h1 class="page-header">Manage Stops</h1>
+    <GmapMap
+      v-bind:center="center"
+      v-bind:zoom="15"
+      :options="{
+        zoomControl: false,
+        disableDefaultUi: true
+      }"
+      style="height: 500px">
+      <GmapMarker
+        v-bind:key="index"
+        v-for="(m, index) in markersStop"
+        v-bind:position="m.position"
+        v-bind:clickable="true"/>
+    </GmapMap>
     <input class="form-control align-content-center justify-content-center" placeholder="Enter Stop's Name" v-model="filterInput">
     <br>
     <table class="table table-striped">
@@ -35,12 +49,22 @@
 <script>
   import Alert from './Alert';
   import axios from 'axios';
+  import {gmapApi} from 'vue2-google-maps'
   const BASE_URL = 'http://ec2-18-219-95-88.us-east-2.compute.amazonaws.com:3000/';
 
   export default {
     name: 'stops',
+    computed: {
+      google: gmapApi
+    },
     data() {
       return {
+        center: {
+          lat: -34.097403,
+          lng: -59.037281
+        },
+        markersStop: [],
+        onceStops: 0,
         stops: [],
         alert: '',
         filterInput: ''
@@ -48,19 +72,9 @@
     },
     methods: {
       fetchStops() {
-        //   this.$http.get('http://localhost/stops/public/api/stops')
-        //   //this.$http.jsonp('http://localhost/stops/public/api/stops')
-        //     .then(function(response){
-        //       this.stops = JSON.parse(JSON.stringify(response.body));
-        //     });
-
-        // axios.defaults.headers.get['Content-Type'] = 'application/json;charset=utf-8';
-        // axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
         axios.get(`${BASE_URL}stops`)
           .then(resp => {
-            //let result = resp.data;
             this.stops = JSON.parse(JSON.stringify(resp.data));
-            // console.log(result);
           });
       },
       filterBy(list, value) {
@@ -69,12 +83,16 @@
           return stop.name.indexOf(value) > -1;
         });
       }
-      /*     {
-              headers:{
-                  'Access-Control-Allow-Origin': '*',
-                  'Access-Control-Allow-Methods': 'POST, GET, PUT, OPTIONS, DELETE',
-                  'Access-Control-Allow-Headers': 'Access-Control-Allow-Methods, Access-Control-Allow-Origin, Origin, Accept, Content-Type'
-          }} */
+    },
+    watch: {
+      stops: function (val) {
+        if (this.onceStops === 0 && this.stops.length > 0){
+          this.onceStops =1;
+          for (let i = 0; i < this.stops.length; i++) {
+            this.markersStop.push({position:{lat: Number(this.stops[i].lat), lng: Number(this.stops[i].long)}})
+          }
+        }
+      },
     },
     created: function () {
       if (this.$route.query.alert) {
@@ -85,8 +103,7 @@
     ,
     updated: function () {
       this.fetchStops();
-    }
-    ,
+    },
     components: {
       Alert
     }
