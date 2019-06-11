@@ -1,7 +1,7 @@
 <template>
   <div class="edit container">
     <Alert v-if="alert" v-bind:message="alert"/>
-    <h1 class="page-header">Edit Stop</h1>
+    <h1 class="page-header">Editar Parada</h1>
 
     <location-picker v-model="location" :options="options" class="margen borde"></location-picker>
 
@@ -9,24 +9,24 @@
       <div class="well">
         <h4>Stop Info</h4>
         <div class="form-group">
-          <label>Latitude</label>
+          <label>Latitud</label>
           <input type="text" readonly class="form-control" placeholder="Latitud" v-model="stop.lat">
-          <label>Longitude</label>
+          <label>Longitud</label>
           <input type="text" readonly class="form-control" placeholder="Longitud" v-model="stop.long">
           <br>
-          <label>Status</label>
-          <input type="radio" id="radio" name="status" value="true" v-model="stop.status"/>Active
-          <input type="radio" id="radio" name="status" value="false" v-model="stop.status"/>Not Active
+          <label>Estado</label>
+          <input type="radio" id="radio" name="status" value="true" v-model="stop.status"/>Activo
+          <input type="radio" id="radio" name="status" value="false" v-model="stop.status"/>No Activo
           <!-- <input type="text" class="form-control" placeholder="Status" v-model="stop.status"> -->
           <br>
           <br>
-          <label>Stop Number</label>
+          <label>Numero Parada</label>
           <input type="number" class="form-control" placeholder="Stop number" v-model="stop.num_stop">
-          <label>Name</label>
+          <label>Nombre</label>
           <input type="text" class="form-control" placeholder="Name" v-model="stop.name">
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Editar</button>
     </form>
   </div>
 </template>
@@ -73,15 +73,15 @@
       },
       updateStop(e) {
         if (!this.stop.lat || !this.stop.long || !this.stop.num_stop || !this.stop.name) {
-          this.alert = 'Please fill in all required fields';
+          this.alert = 'Por favor, complete todos los campos';
         } else if (isNaN(this.stop.lat)) {
-          this.alert = 'Please enter a valid number in Latitude';
+          this.alert = 'Por favor, ingrese un numero valido en Latitud';
         } else if (isNaN(this.stop.long)) {
-          this.alert = 'Please enter a valid number in Longitude';
+          this.alert = 'Por favor, ingrese un numero valido en Longitud';
         } else if (!Number.isInteger(parseInt(this.stop.num_stop))) {
-          this.alert = 'Please enter a valid number in Stop Number';
+          this.alert = 'Por favor, ingrese un numero valido en Numero Parada';
         } else if (parseInt(this.stop.num_stop) < 0) {
-          this.alert = 'Please enter a positive number in Stop Number';
+          this.alert = 'Por favor, ingrese un numero positivo en Numero Parada';
         } else {
           axios({
             method: 'put',
@@ -97,7 +97,7 @@
               name: this.stop.name
             }
           });
-          this.$router.push({path: '/stops', query: {alert: 'Stop Updated'}});
+          this.$router.push({path: '/stops', query: {alert: 'Parada actualizada con exito'}});
           e.preventDefault();
         }
         e.preventDefault();

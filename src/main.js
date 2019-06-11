@@ -71,7 +71,7 @@ new Vue({
             <li><router-link to="/about">Nosotros</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link to="/add">Agregar Stop</router-link></li>
+            <li><router-link to="/add">Agregar Parada</router-link></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

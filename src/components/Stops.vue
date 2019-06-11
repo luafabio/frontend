@@ -1,7 +1,7 @@
 <template>
   <div class="stops container">
     <Alert v-if="alert" v-bind:message="alert"/>
-    <h1 class="page-header">Manage Stops</h1>
+    <h2 class="page-header">Gestion de Paradas de Colectivos</h2>
     <GmapMap
       v-bind:center="center"
       v-bind:zoom="15"
@@ -16,16 +16,16 @@
         v-bind:position="m.position"
         v-bind:clickable="true"/>
     </GmapMap>
-    <input class="form-control align-content-center justify-content-center" placeholder="Enter Stop's Name" v-model="filterInput">
+    <input class="form-control align-content-center justify-content-center" placeholder="Ingrese el nombre de la parada" v-model="filterInput">
     <br>
     <table class="table table-striped">
       <thead>
       <tr>
-        <th>Latitude</th>
-        <th>Longitude</th>
-        <th>Status</th>
-        <th>Stop Number</th>
-        <th>Name</th>
+        <th>Latitud</th>
+        <th>Longitud</th>
+        <th>Estado</th>
+        <th>Numero de Parada</th>
+        <th>Nombre</th>
         <th></th>
       </tr>
       </thead>

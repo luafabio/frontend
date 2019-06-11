@@ -1,6 +1,6 @@
 <template>
   <div class="about container">
-    <h1 class="page-header">About</h1>
+    <h1 class="page-header">Quienes somos</h1>
     <p>Hermes Project Solutions Systems</p>
     <p>Proyecto Final realizado para la UTN - Facultad Regional Delta</p>
     Integrantes:<ul>

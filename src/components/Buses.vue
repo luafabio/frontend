@@ -1,7 +1,7 @@
 <template>
   <div class="buses container">
     <Alert v-if="alert" v-bind:message="alert"/>
-    <h1 class="page-header">Buses</h1>
+    <h1 class="page-header">Colectivos</h1>
     <!-- <input class="form-control" placeholder="Enter Imei's Buse Name" v-model="filterInput"> -->
     <br>
 
@@ -9,9 +9,9 @@
       <thead>
       <tr>
         <th>Imei</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-        <th>Next Stop</th>
+        <th>Latitud</th>
+        <th>Longitud</th>
+        <th>Siguiente Parada</th>
       </tr>
       </thead>
       <tbody>

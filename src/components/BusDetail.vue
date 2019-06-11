@@ -1,6 +1,6 @@
 <template>
   <div class="buses container">
-    <h1 class="page-header">Buses</h1>
+    <h1 class="page-header">Colectivo</h1>
     <br>
     <GmapMap
       v-bind:center="center"
