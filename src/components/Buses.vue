@@ -1,17 +1,16 @@
 <template>
   <div class="buses container">
     <Alert v-if="alert" v-bind:message="alert"/>
-    <h1 class="page-header">Buses</h1>
-    <!-- <input class="form-control" placeholder="Enter Imei's Buse Name" v-model="filterInput"> -->
+    <h1 class="page-header">Colectivos</h1>
     <br>
 
     <table class="table table-striped">
       <thead>
       <tr>
         <th>Imei</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-        <th>Next Stop</th>
+        <th>Latitud</th>
+        <th>Longitud</th>
+        <th>Siguiente Parada</th>
       </tr>
       </thead>
       <tbody>
@@ -21,7 +20,7 @@
         <td>{{bus.long}}</td>
         <td>{{bus.next_stop}}</td>
         <td>
-          <router-link class="btn btn-default" v-bind:to="'/bus/'+bus._id">Ver Recorrido</router-link>
+          <router-link class="btn btn-secondary" v-bind:to="'/bus/'+bus._id">Ver Recorrido</router-link>
         </td>
       </tr>
       </tbody>

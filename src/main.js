@@ -53,29 +53,26 @@ new Vue({
   router,
   template: `
   <div id="app">
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Hermes</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><router-link to="/stops">Paradas</router-link></li>
-            <li><router-link to="/buses">Colectivos</router-link></li>
-            <li><router-link to="/about">Nosotros</router-link></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><router-link to="/add">Agregar Stop</router-link></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Hermes</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <router-link class="nav-link" to="/stops">Paradas</router-link>
+      </li>
+      <li class="nav-item active">
+        <router-link class="nav-link" to="/buses">Colectivos</router-link>
+      </li>
+      <li class="nav-item active">
+        <router-link class="nav-link" to="/about">Nosotros</router-link>
+      </li>
+    </ul>
+  </div>
+</nav>
     <router-view></router-view>
   </div>
   `

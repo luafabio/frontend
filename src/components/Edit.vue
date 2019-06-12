@@ -1,33 +1,64 @@
 <template>
   <div class="edit container">
     <Alert v-if="alert" v-bind:message="alert"/>
-    <h1 class="page-header">Edit Stop</h1>
+    <h1 class="page-header">Editar Parada</h1>
+    <hr width="75%"/>
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <ul class="list-group">
+            <div class="jumbotron">
+              <form v-on:submit="updateStop">
+                <div class="well">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Latitude</label>
+                      <input type="text" class="form-control" placeholder="Latitud" v-model="stop.lat">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Latitude</label>
+                      <input type="text" class="form-control" placeholder="Latitud" v-model="stop.lat">
+                    </div>
+                  </div>
 
-    <location-picker v-model="location" :options="options" class="margen borde"></location-picker>
-
-    <form v-on:submit="updateStop">
-      <div class="well">
-        <h4>Stop Info</h4>
-        <div class="form-group">
-          <label>Latitude</label>
-          <input type="text" readonly class="form-control" placeholder="Latitud" v-model="stop.lat">
-          <label>Longitude</label>
-          <input type="text" readonly class="form-control" placeholder="Longitud" v-model="stop.long">
-          <br>
-          <label>Status</label>
-          <input type="radio" id="radio" name="status" value="true" v-model="stop.status"/>Active
-          <input type="radio" id="radio" name="status" value="false" v-model="stop.status"/>Not Active
-          <!-- <input type="text" class="form-control" placeholder="Status" v-model="stop.status"> -->
-          <br>
-          <br>
-          <label>Stop Number</label>
-          <input type="number" class="form-control" placeholder="Stop number" v-model="stop.num_stop">
-          <label>Name</label>
-          <input type="text" class="form-control" placeholder="Name" v-model="stop.name">
+                  <div class="form-group">
+                    <label>Estado</label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="status" id="exampleRadios1" value="true"
+                             v-model="stop.status" checked>
+                      <label class="form-check-label" for="exampleRadios1">
+                        Activa
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="false"
+                             v-model="stop.status">
+                      <label class="form-check-label" for="exampleRadios2">
+                        No Activa
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Numero de parada</label>
+                    <input type="number" class="form-control" placeholder="Stop number" v-model="stop.num_stop">
+                  </div>
+                  <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" placeholder="Name" v-model="stop.name">
+                  </div>
+                </div>
+                <button type="submit btn-secondary" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </ul>
+        </div>
+        <div class="col-8 ">
+          <location-picker v-model="location" :options="options" class="margen borde"></location-picker>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
+
+
   </div>
 </template>
 
@@ -50,8 +81,7 @@
           map: {
             zoom: 15
           },
-          marker: {
-          },
+          marker: {},
           autocomplete: { /** autocomplete options **/}
         },
         stop: '',

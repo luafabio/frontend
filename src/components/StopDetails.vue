@@ -1,26 +1,36 @@
 <template>
   <div class="details container">
-    <router-link to="/">Back</router-link>
     <h1 class="page-header">{{stop.name}}
-      <span class="pull-right">
-        <router-link class="btn btn-primary" v-bind:to="'/edit/'+stop._id">Edit</router-link>
-        <button class="btn btn-danger" v-on:click="deleteStop(stop._id)">Delete</button>
-      </span>
+      <div class="btn-group float-right" role="group" aria-label="Basic example">
+        <router-link class="btn btn-secondary" style="margin-top: 10px"
+                     v-bind:to="'/edit/'+stop._id">Edit
+        </router-link>
+        <button class="btn btn-danger" style="margin-top: 10px"
+                v-on:click="deleteStop(stop._id)">Delete
+        </button>
+      </div>
+      <hr width="75%"/>
+
     </h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <ul class="list-group">
+            <li class="list-group-item">Latitud: {{stop.lat}}</li>
+            <li class="list-group-item">Longitud: {{stop.long}}</li>
+            <li class="list-group-item">Tiempo de parada: {{stop.eta_stop}}</li>
+            <li class="list-group-item">Radio parada: {{stop.long_stop}}</li>
+            <li class="list-group-item" v-if="stop.status == true">Status: Active</li>
+            <li class="list-group-item" v-else>Status: Not Active</li>
+            <li class="list-group-item">Numero parada: {{stop.num_stop}}</li>
+          </ul>
+        </div>
+        <div class="col-8 ">
+          <location-picker v-model="location" :options="options" class="margen borde"></location-picker>
+        </div>
+      </div>
+    </div>
 
-    <location-picker v-model="location" :options="options" class="margen borde"></location-picker>
-
-    <ul class="list-group">
-      <li class="list-group-item">Latitud: {{stop.lat}}</li>
-      <li class="list-group-item">Longitud: {{stop.long}}</li>
-      <li class="list-group-item">Tiempo de parada: {{stop.eta_stop}}</li>
-      <li class="list-group-item">Radio parada: {{stop.long_stop}}</li>
-      <li class="list-group-item" v-if="stop.status == true">Status: Active</li>
-      <li class="list-group-item" v-else>Status: Not Active</li>
-      <li class="list-group-item">Numero parada: {{stop.num_stop}}</li>
-      <li class="list-group-item">Modificado: {{stop.updatedAt}}</li>
-      <li class="list-group-item">Creado: {{stop.createdAt}}</li>
-    </ul>
   </div>
 </template>
 
@@ -43,6 +53,10 @@
           map: {
             zoom: 15
           },
+          zoomControl: false,
+          disableDefaultUi: true,
+          streetViewControl: false,
+          mapTypeControl: false,
           marker: {
             draggable: false
           },

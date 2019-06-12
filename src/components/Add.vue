@@ -1,7 +1,7 @@
 <template>
   <div class="add container">
     <Alert v-if="alert" v-bind:message="alert"/>
-    <h1 class="page-header">Add Stop</h1>
+    <h1 class="page-header">Agregar Parada</h1>
     <location-picker class="my-20 borde" v-model="location" :options="options"></location-picker>
 
     <form v-on:submit="addStop">
@@ -24,7 +24,6 @@
           <label><input type="radio" id="radio" name="status" value="true" v-model="stop.status"/>Active</label>
           <br>
           <label><input type="radio" id="radio" name="status" value="false" v-model="stop.status"/>Not Active</label>
-          <!-- <input type="text" class="form-control" placeholder="status" v-model="stop.status"> -->
         </div>
         <div class="form-group">
           <label>Stop Number</label>

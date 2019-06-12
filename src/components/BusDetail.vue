@@ -1,8 +1,8 @@
 <template>
   <div class="buses container">
-    <h1 class="page-header">Buses</h1>
+    <h1 class="page-header">Colectivo</h1>
     <br>
-    <GmapMap
+    <GmapMap class="my-20 borde"
       v-bind:center="center"
       v-bind:zoom="15"
       :options="{
@@ -10,7 +10,6 @@
         disableDefaultUi: true,
         streetViewControl: false,
         mapTypeControl: false,
-        gestureHandling: 'none',
       }"
       style="height: 500px">
       <GmapMarker
