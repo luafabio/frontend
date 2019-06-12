@@ -1,0 +1,19 @@
+{
+   "_id": {
+       "$oid": "5ce72f116fce11e0cda7dee9"
+   },
+   "next_stop": 0, 
+   "attempts": 60,
+   "imei": 1111,
+   "lat": -34.097402,
+   "long": -59.037281,
+   "status": "initial",
+   "eta_next_stop": 0,
+   "updatedAt": {
+       "$date": "2019-05-23T23:38:58.444Z"
+   },
+   "createdAt": {
+       "$date": "2019-05-23T23:38:58.444Z"
+   },
+   "__v": 0
+}
