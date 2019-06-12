@@ -36,7 +36,7 @@
     </div>
     <hr width="75%" />
     <div class="form-group">
-      <input class="form-control align-content-center justify-content-center" placeholder="Enter Stop's Name"
+      <input class="form-control align-content-center justify-content-center" placeholder="Ingrese el nombre de la parada de colectivo"
              v-model="filterInput">
     </div>
       <br>
@@ -57,11 +57,11 @@
 
           <td>{{stop.lat}}</td>
           <td>{{stop.long}}</td>
-          <td v-if="stop.status == true">Active</td>
-          <td v-else>Not Active</td>
+          <td v-if="stop.status == true">Activo</td>
+          <td v-else>No Activo</td>
           <td>{{stop.name}}</td>
           <td>
-            <router-link class="btn btn-secondary" v-bind:to="'/stop/'+stop._id">View</router-link>
+            <router-link class="btn btn-secondary" v-bind:to="'/stop/'+stop._id">Ver</router-link>
           </td>
         </tr>
         </tbody>

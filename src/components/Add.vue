@@ -1,41 +1,48 @@
 <template>
   <div class="add container">
     <Alert v-if="alert" v-bind:message="alert"/>
-    <h1 class="page-header">Agregar Parada</h1>
-    <location-picker class="my-20 borde" v-model="location" :options="options"></location-picker>
-
+    <h2 class="page-header my-20">Agregar Parada de Colectivo</h2>
+    <hr width="100%"/>
     <form v-on:submit="addStop">
-      <div class="well">
-        <h4>Stop Info</h4>
-        <div class="form-group">
-        </div>
-        <div class="form-group">
-          <label>Latitude</label>
-          <input type="text" readonly class="form-control" placeholder="Latitude" v-model="stop.lat">
-        </div>
-        <div class="form-group">
-          <label>Longitude</label>
-          <input type="text"  readonly class="form-control" placeholder="Longitude" v-model="stop.long">
-        </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <div class="well">
+                <h4>Informacion de la Parada</h4>
 
-        <div class="form-group">
-          <label>Status</label>
-          <br>
-          <label><input type="radio" id="radio" name="status" value="true" v-model="stop.status"/>Active</label>
-          <br>
-          <label><input type="radio" id="radio" name="status" value="false" v-model="stop.status"/>Not Active</label>
-        </div>
-        <div class="form-group">
-          <label>Stop Number</label>
-          <input type="number" class="form-control" placeholder="Stop number" v-model="stop.num_stop">
-        </div>
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" class="form-control" placeholder="Name" v-model="stop.name">
+              <div class="form-group">
+                <label><b>Latitud</b></label>
+                <input type="text" readonly class="form-control" placeholder="Latitud" v-model="stop.lat">
+              </div>
+              <div class="form-group">
+                <label><b>Longitud</b></label>
+                <input type="text"  readonly class="form-control" placeholder="Longitud" v-model="stop.long">
+              </div>
+
+              <div class="form-group">
+                <label><b>Estado</b></label>
+                <br>
+                <label><input type="radio" id="radio" name="status" value="true" v-model="stop.status"/>Activo</label>
+                <br>
+                <label><input type="radio" id="radio" name="status" value="false" v-model="stop.status"/>No Activo</label>
+              </div>
+              <div class="form-group">
+                <label><b>Numero de la Parada</b></label>
+                <input type="number" class="form-control" placeholder="Ingrese un numero" v-model="stop.num_stop">
+              </div>
+              <div class="form-group">
+                <label><b>Nombre</b></label>
+                <input type="text" class="form-control" placeholder="Ingrese un nombre" v-model="stop.name">
+              </div>
+            </div>
+          </div>
+          <div class="col-8">
+            <location-picker class="my-20 borde" v-model="location" :options="options"></location-picker>
+          </div>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-success my-20">Agregar</button>
     </form>
   </div>
 
@@ -85,15 +92,15 @@
       },
       addStop(e) {
         if (!this.stop.lat || !this.stop.long || !this.stop.num_stop || !this.stop.name) {
-          this.alert = 'Please fill in all required fields';
+          this.alert = 'Por favor complete todos los campos';
         } else if (isNaN(this.stop.lat)) {
-          this.alert = 'Please enter a valid number in Latitude';
+          this.alert = 'Por favor ingrese un numero valido en Latitud';
         } else if (isNaN(this.stop.long)) {
-          this.alert = 'Please enter a valid number in Longitude';
+          this.alert = 'Por favor ingrese un numero valido en Longitud';
         } else if (!Number.isInteger(parseInt(this.stop.num_stop))) {
-          this.alert = 'Please enter a valid number in Stop Number';
+          this.alert = 'Por favor ingrese un numero valido en Numero Parada';
         } else if (parseInt(this.stop.num_stop) < 0) {
-          this.alert = 'Please enter a positive number in Stop Number';
+          this.alert = 'Por favor ingrese un numero mayor que cero en Numero de Parada';
         } else {
           //this.$http.post('http://localhost/stops/public/api/stops/add', newStop)
           axios({
@@ -110,7 +117,7 @@
               name: this.stop.name
             }
           });
-          this.$router.push({path: '/stops', query: {alert: 'Stop Added'}});
+          this.$router.push({path: '/stops', query: {alert: 'Parada agregada en forma exitosa'}});
           e.preventDefault();
         }
         e.preventDefault();

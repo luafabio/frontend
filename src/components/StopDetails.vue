@@ -3,10 +3,10 @@
     <h1 class="page-header">{{stop.name}}
       <div class="btn-group float-right" role="group" aria-label="Basic example">
         <router-link class="btn btn-secondary" style="margin-top: 10px"
-                     v-bind:to="'/edit/'+stop._id">Edit
+                     v-bind:to="'/edit/'+stop._id">Editar
         </router-link>
         <button class="btn btn-danger" style="margin-top: 10px"
-                v-on:click="deleteStop(stop._id)">Delete
+                v-on:click="deleteStop(stop._id)">Borrar
         </button>
       </div>
       <hr width="75%"/>
@@ -16,13 +16,13 @@
       <div class="row">
         <div class="col-4">
           <ul class="list-group">
-            <li class="list-group-item">Latitud: {{stop.lat}}</li>
-            <li class="list-group-item">Longitud: {{stop.long}}</li>
-            <li class="list-group-item">Tiempo de parada: {{stop.eta_stop}}</li>
-            <li class="list-group-item">Radio parada: {{stop.long_stop}}</li>
-            <li class="list-group-item" v-if="stop.status == true">Status: Active</li>
-            <li class="list-group-item" v-else>Status: Not Active</li>
-            <li class="list-group-item">Numero parada: {{stop.num_stop}}</li>
+            <li class="list-group-item"><b>Latitud:</b> {{stop.lat}}</li>
+            <li class="list-group-item"><b>Longitud:</b> {{stop.long}}</li>
+            <li class="list-group-item"><b>Tiempo de parada:</b> {{stop.eta_stop}}</li>
+            <li class="list-group-item"><b>Radio parada:</b> {{stop.long_stop}}</li>
+            <li class="list-group-item" v-if="stop.status == true"><b>Estado:</b> Activo</li>
+            <li class="list-group-item" v-else><b>Estado:</b> No Activo</li>
+            <li class="list-group-item"><b>Numero parada:</b> {{stop.num_stop}}</li>
           </ul>
         </div>
         <div class="col-8 ">

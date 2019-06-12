@@ -2,7 +2,7 @@
   <div class="edit container">
     <Alert v-if="alert" v-bind:message="alert"/>
     <h1 class="page-header">Editar Parada</h1>
-    <hr width="75%"/>
+    <hr width="100%"/>
     <div class="container">
       <div class="row">
         <div class="col-4">
@@ -12,12 +12,12 @@
                 <div class="well">
                   <div class="form-row">
                     <div class="form-group col-md-6">
-                      <label>Latitude</label>
+                      <label>Latitud</label>
                       <input type="text" class="form-control" placeholder="Latitud" v-model="stop.lat">
                     </div>
                     <div class="form-group col-md-6">
-                      <label>Latitude</label>
-                      <input type="text" class="form-control" placeholder="Latitud" v-model="stop.lat">
+                      <label>Longitud</label>
+                      <input type="text" class="form-control" placeholder="Latitud" v-model="stop.long">
                     </div>
                   </div>
 
@@ -47,7 +47,7 @@
                     <input type="text" class="form-control" placeholder="Name" v-model="stop.name">
                   </div>
                 </div>
-                <button type="submit btn-secondary" class="btn btn-primary">Submit</button>
+                <button type="submit btn-secondary" class="btn btn-primary">Editar</button>
               </form>
             </div>
           </ul>
@@ -103,15 +103,15 @@
       },
       updateStop(e) {
         if (!this.stop.lat || !this.stop.long || !this.stop.num_stop || !this.stop.name) {
-          this.alert = 'Please fill in all required fields';
+          this.alert = 'Por favor complete todos los campos';
         } else if (isNaN(this.stop.lat)) {
-          this.alert = 'Please enter a valid number in Latitude';
+          this.alert = 'Por favor ingrese un numero valido en Latitud';
         } else if (isNaN(this.stop.long)) {
-          this.alert = 'Please enter a valid number in Longitude';
+          this.alert = 'Por favor ingrese un numero valido en Longitud';
         } else if (!Number.isInteger(parseInt(this.stop.num_stop))) {
-          this.alert = 'Please enter a valid number in Stop Number';
+          this.alert = 'Por favor ingrese un numero valido en Numero Parada';
         } else if (parseInt(this.stop.num_stop) < 0) {
-          this.alert = 'Please enter a positive number in Stop Number';
+          this.alert = 'Por favor ingrese un numero mayor que cero en Numero de Parada';
         } else {
           axios({
             method: 'put',
@@ -127,7 +127,7 @@
               name: this.stop.name
             }
           });
-          this.$router.push({path: '/stops', query: {alert: 'Stop Updated'}});
+          this.$router.push({path: '/stops', query: {alert: 'Parada modificada en forma exitosa'}});
           e.preventDefault();
         }
         e.preventDefault();
