@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-4">
             <div class="well">
-                <h4>Informacion de la Parada</h4>
+              <h4>Informacion de la Parada</h4>
 
               <div class="form-group">
                 <label><b>Latitud</b></label>
@@ -22,9 +22,9 @@
               <div class="form-group">
                 <label><b>Estado</b></label>
                 <br>
-                <label><input type="radio" id="radio" name="status" value="true" v-model="stop.status"/>Activo</label>
+                <label><input type="radio" id="radio" name="status" value="true" v-model="stop.status"/>Activa</label>
                 <br>
-                <label><input type="radio" id="radio" name="status" value="false" v-model="stop.status"/>No Activo</label>
+                <label><input type="radio" id="radio" name="status" value="false" v-model="stop.status"/>No Activa</label>
               </div>
               <div class="form-group">
                 <label><b>Numero de la Parada</b></label>

@@ -3,7 +3,7 @@
     <Alert v-if="alert" v-bind:message="alert"/>
       <router-link class="btn btn-secondary float-right" style="margin-top: 10px" to="/add">Agregar Parada</router-link>
 
-    <h1 class="page-header">Paradas de colectivo</h1>
+    <h1 class="page-header">Paradas de Colectivos</h1>
     <div class="panel-group" id="accordion">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -57,8 +57,8 @@
 
           <td>{{stop.lat}}</td>
           <td>{{stop.long}}</td>
-          <td v-if="stop.status == true">Activo</td>
-          <td v-else>No Activo</td>
+          <td v-if="stop.status == true">Activa</td>
+          <td v-else>No Activa</td>
           <td>{{stop.name}}</td>
           <td>
             <router-link class="btn btn-secondary" v-bind:to="'/stop/'+stop._id">Ver</router-link>

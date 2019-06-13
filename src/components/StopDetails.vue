@@ -9,7 +9,7 @@
                 v-on:click="deleteStop(stop._id)">Borrar
         </button>
       </div>
-      <hr width="75%"/>
+      <hr width="100%"/>
 
     </h1>
     <div class="container">
@@ -20,8 +20,8 @@
             <li class="list-group-item"><b>Longitud:</b> {{stop.long}}</li>
             <li class="list-group-item"><b>Tiempo de parada:</b> {{stop.eta_stop}}</li>
             <li class="list-group-item"><b>Radio parada:</b> {{stop.long_stop}}</li>
-            <li class="list-group-item" v-if="stop.status == true"><b>Estado:</b> Activo</li>
-            <li class="list-group-item" v-else><b>Estado:</b> No Activo</li>
+            <li class="list-group-item" v-if="stop.status == true"><b>Estado:</b> Activa</li>
+            <li class="list-group-item" v-else><b>Estado:</b> No Activa</li>
             <li class="list-group-item"><b>Numero parada:</b> {{stop.num_stop}}</li>
           </ul>
         </div>

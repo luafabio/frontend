@@ -3,62 +3,61 @@
     <Alert v-if="alert" v-bind:message="alert"/>
     <h1 class="page-header">Editar Parada</h1>
     <hr width="100%"/>
-    <div class="container">
-      <div class="row">
-        <div class="col-4">
-          <ul class="list-group">
-            <div class="jumbotron">
-              <form v-on:submit="updateStop">
-                <div class="well">
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label>Latitud</label>
-                      <input type="text" class="form-control" placeholder="Latitud" v-model="stop.lat">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label>Longitud</label>
-                      <input type="text" class="form-control" placeholder="Latitud" v-model="stop.long">
-                    </div>
-                  </div>
+    <form v-on:submit="updateStop">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <div class="well">
+              <div class="form-group">
+                <label>Latitud</label>
+                <input type="text" readonly class="form-control" placeholder="Latitud" v-model="stop.lat">
+              </div>
+              <div class="form-group">
+                <label>Longitud</label>
+                <input type="text" readonly class="form-control" placeholder="Latitud" v-model="stop.long">
+              </div>
 
-                  <div class="form-group">
-                    <label>Estado</label>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="status" id="exampleRadios1" value="true"
+              <div class="form-group">
+                <label>Estado</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="status" id="exampleRadios1" value="true"
                              v-model="stop.status" checked>
-                      <label class="form-check-label" for="exampleRadios1">
-                        Activa
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="false"
-                             v-model="stop.status">
-                      <label class="form-check-label" for="exampleRadios2">
-                        No Activa
-                      </label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Numero de parada</label>
-                    <input type="number" class="form-control" placeholder="Stop number" v-model="stop.num_stop">
-                  </div>
-                  <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" class="form-control" placeholder="Name" v-model="stop.name">
-                  </div>
+                  <label class="form-check-label" for="exampleRadios1">
+                    Activa
+                  </label>
                 </div>
-                <button type="submit btn-secondary" class="btn btn-primary">Editar</button>
-              </form>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="false"
+                      v-model="stop.status">
+                  <label class="form-check-label" for="exampleRadios2">
+                    No Activa
+                  </label>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <label>Numero de parada</label>
+                <input type="number" class="form-control" placeholder="Stop number" v-model="stop.num_stop">
+              </div>
+
+              <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" placeholder="Name" v-model="stop.name">
+              </div>
+
             </div>
-          </ul>
-        </div>
-        <div class="col-8 ">
-          <location-picker v-model="location" :options="options" class="margen borde"></location-picker>
+          </div>
+
+          <div class="col-8">
+            <location-picker v-model="location" :options="options" class="my-20 borde"></location-picker>
+          </div>
+
         </div>
       </div>
-    </div>
-
-
+      <button type="submit btn-secondary" class="btn btn-primary">Editar</button>
+    </form>
   </div>
 </template>
 
