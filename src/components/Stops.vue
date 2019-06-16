@@ -1,15 +1,15 @@
 <template>
   <div class="stops container">
     <Alert v-if="alert" v-bind:message="alert"/>
-    <router-link class="btn btn-secondary float-right" style="margin-top: 10px" to="/add">Agregar Parada</router-link>
+    <router-link class="btn btn-success float-right" style="margin-top: 10px" to="/add">Agregar Parada</router-link>
 
-    <h1 class="page-header">Paradas de Colectivos</h1>
+    <h1 class="page-header">Paradas - Linea 228</h1>
     <div class="panel-group" id="accordion">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
             <hr width="75%"/>
-            <button class="btn btn-secondary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#map"
+            <button class="btn btn-success btn-lg btn-block" type="button" data-toggle="collapse" data-target="#map"
                     aria-expanded="false" aria-controls="collapseExample">
               Ver mapa
             </button>
@@ -52,24 +52,28 @@
       <thead>
       <tr>
         <th scope="col">N. Parada</th>
-        <th scope="col">Latitud</th>
-        <th scope="col">Longitud</th>
-        <th scope="col">Estado</th>
         <th scope="col">Nombre</th>
+        <th scope="col">Tiempo entre paradas</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Opciones</th>
         <th></th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="stop in filterBy(stops, filterInput)">
         <td>{{stop.num_stop}}</td>
-        <td>{{stop.lat}}</td>
-        <td>{{stop.long}}</td>
+        <td>{{stop.name}}</td>
+        <td>{{stop.eta_stop}} seg</td>
         <td v-if="stop.status == true">Activa</td>
         <td v-else>No Activa</td>
-        <td>{{stop.name}}</td>
         <td>
-          <router-link class="btn btn-secondary" v-bind:to="'/stop/'+stop._id">Ver</router-link>
+          <div class="btn-group btn-group-sm" role="toolbar" aria-label="Basic example">
+            <router-link class="btn btn-secondary" style="" v-bind:to="'/edit/'+stop._id">Editar</router-link>
+            <router-link class="btn btn-success" style="" v-bind:to="'/stop/'+stop._id">Ver</router-link>
+            <button class="btn btn-danger" style="" v-on:click="deleteStop(stop._id)">Borrar</button>
+          </div>
         </td>
+
       </tr>
       </tbody>
     </table>
@@ -121,8 +125,8 @@
             {lat: -34.162471,lng: -58.977402},
             {lat: -34.162404,lng: -58.974103},
             {lat: -34.16246,lng: -58.972394},
-            {lat: -34.162548,lng: -58.969455},
-            {lat: -34.162574,lng: -58.969337},
+            {lat: -34.162447,lng: -58.970500},
+            {lat: -34.163488,lng: -58.970570},
             {lat: -34.163551,lng: -58.969456},
             {lat: -34.163789,lng: -58.966078},
             {lat: -34.163923,lng: -58.963729},

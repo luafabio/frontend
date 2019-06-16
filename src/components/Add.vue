@@ -6,43 +6,35 @@
     <form v-on:submit="addStop">
       <div class="container">
         <div class="row">
-          <div class="col-4">
-            <div class="well">
-              <h4>Informacion de la Parada</h4>
-
-              <div class="form-group">
-                <label><b>Latitud</b></label>
-                <input type="text" readonly class="form-control" placeholder="Latitud" v-model="stop.lat">
-              </div>
-              <div class="form-group">
-                <label><b>Longitud</b></label>
-                <input type="text"  readonly class="form-control" placeholder="Longitud" v-model="stop.long">
-              </div>
-
-              <div class="form-group">
-                <label><b>Estado</b></label>
-                <br>
-                <label><input type="radio" id="radio" name="status" value="true" v-model="stop.status"/>Activa</label>
-                <br>
-                <label><input type="radio" id="radio" name="status" value="false" v-model="stop.status"/>No Activa</label>
-              </div>
-              <div class="form-group">
-                <label><b>Numero de la Parada</b></label>
-                <input type="number" class="form-control" placeholder="Ingrese un numero" v-model="stop.num_stop">
-              </div>
-              <div class="form-group">
-                <label><b>Nombre</b></label>
-                <input type="text" class="form-control" placeholder="Ingrese un nombre" v-model="stop.name">
-              </div>
-            </div>
-          </div>
           <div class="col-8">
             <location-picker class="my-20 borde" v-model="location" :options="options"></location-picker>
           </div>
+          <div class="col-4">
+            <div class="well">
+              <div class="form-group">
+                <div class="form-group">
+                  <label><b>Nombre</b></label>
+                  <input type="text" class="form-control" placeholder="Ingrese un nombre" v-model="stop.name">
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-8">
+                    <label><b>Estado</b></label>
+                    <select class="custom-select">
+                      <option value="true" v-model="stop.status" selected>Activa</option>
+                      <option value="false" v-model="stop.status"> No Activa</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label><b>N. de Parada</b></label>
+                    <input type="number" class="form-control" placeholder="" v-model="stop.num_stop">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-success my-20 float-right">Agregar</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <button type="submit" class="btn btn-success my-20">Agregar</button>
     </form>
   </div>
 
@@ -66,8 +58,8 @@
         },
         options: { // is not required
           map: {/** other map options **/},
-          marker: { /** marker options **/ },
-          autocomplete: { /** autocomplete options **/ }
+          marker: { /** marker options **/},
+          autocomplete: { /** autocomplete options **/}
         },
         stop: {
           lat: '',
@@ -86,7 +78,7 @@
       },
     },
     methods: {
-      cord(){
+      cord() {
         this.stop.lat = this.location.lat.toFixed(6);
         this.stop.long = this.location.lng.toFixed(6);
       },

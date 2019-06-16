@@ -2,7 +2,7 @@
   <div class="cover container box">
     <div>
       <h1 class="page-header titulo">Hermes Solutions Systems</h1>
-      <img src="../assets/img.jpg" class="image-container">
+      <img src="../../assets/logo.png" class="image-container">
     </div>
   </div>
 </template>

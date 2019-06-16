@@ -6,57 +6,41 @@
     <form v-on:submit="updateStop">
       <div class="container">
         <div class="row">
-          <div class="col-4">
-            <div class="well">
-              <div class="form-group">
-                <label>Latitud</label>
-                <input type="text" readonly class="form-control" placeholder="Latitud" v-model="stop.lat">
-              </div>
-              <div class="form-group">
-                <label>Longitud</label>
-                <input type="text" readonly class="form-control" placeholder="Latitud" v-model="stop.long">
-              </div>
-
-              <div class="form-group">
-                <label>Estado</label>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="status" id="exampleRadios1" value="true"
-                             v-model="stop.status" checked>
-                  <label class="form-check-label" for="exampleRadios1">
-                    Activa
-                  </label>
-                </div>
-
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="false"
-                      v-model="stop.status">
-                  <label class="form-check-label" for="exampleRadios2">
-                    No Activa
-                  </label>
-                </div>
-
-              </div>
-
-              <div class="form-group">
-                <label>Numero de parada</label>
-                <input type="number" class="form-control" placeholder="Stop number" v-model="stop.num_stop">
-              </div>
-
-              <div class="form-group">
-                <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Name" v-model="stop.name">
-              </div>
-
-            </div>
-          </div>
-
           <div class="col-8">
             <location-picker v-model="location" :options="options" class="my-20 borde"></location-picker>
           </div>
 
+          <div class="col-4">
+            <div class="well">
+
+              <div class="form-group">
+                <div class="form-group">
+                  <label><b>Nombre</b></label>
+                  <input type="text" class="form-control" placeholder="Ingrese un nombre" v-model="stop.name">
+                </div>
+
+                <div class="form-row">
+
+                  <div class="form-group col-md-8">
+                    <label><b>Estado</b></label>
+                    <select class="custom-select">
+                      <option value="true" v-model="stop.status" selected>Activa</option>
+                      <option value="false" v-model="stop.status"> No Activa</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label><b>N. de Parada</b></label>
+                    <input type="number" class="form-control" placeholder="" v-model="stop.num_stop">
+                  </div>
+                </div>
+
+                <button type="submit btn-secondary" class="btn btn-success float-right">Editar</button>
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <button type="submit btn-secondary" class="btn btn-primary">Editar</button>
     </form>
   </div>
 </template>
@@ -103,9 +87,9 @@
       updateStop(e) {
         if (!this.stop.lat || !this.stop.long || !this.stop.num_stop || !this.stop.name) {
           this.alert = 'Por favor complete todos los campos';
-        } else if (isNaN(this.stop.lat)) {
+        } else if (isNaN(this.location.lat)) {
           this.alert = 'Por favor ingrese un numero valido en Latitud';
-        } else if (isNaN(this.stop.long)) {
+        } else if (isNaN(this.location.lng)) {
           this.alert = 'Por favor ingrese un numero valido en Longitud';
         } else if (!Number.isInteger(parseInt(this.stop.num_stop))) {
           this.alert = 'Por favor ingrese un numero valido en Numero Parada';
@@ -117,8 +101,8 @@
             url: `${BASE_URL}stops/${this.$route.params.id}`,
             headers: {},
             data: {
-              lat: this.stop.lat,
-              long: this.stop.long,
+              lat: this.location.lat,
+              long: this.location.lng,
               eta_stop: this.stop.eta_stop,
               long_stop: this.stop.long_stop,
               status: this.stop.status,

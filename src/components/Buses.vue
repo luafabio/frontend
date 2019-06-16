@@ -11,6 +11,8 @@
         <th>Latitud</th>
         <th>Longitud</th>
         <th>Siguiente Parada</th>
+        <th>ETA Parada</th>
+        <th>Opciones</th>
       </tr>
       </thead>
       <tbody>
@@ -19,8 +21,9 @@
         <td>{{bus.lat}}</td>
         <td>{{bus.long}}</td>
         <td>{{bus.next_stop}}</td>
+        <td>{{bus.eta_next_stop}} seg</td>
         <td>
-          <router-link class="btn btn-secondary" v-bind:to="'/bus/'+bus._id">Ver Recorrido</router-link>
+          <router-link class="btn btn-success " v-bind:to="'/bus/'+bus._id">Recorrido</router-link>
         </td>
       </tr>
       </tbody>
