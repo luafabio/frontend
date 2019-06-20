@@ -1,6 +1,6 @@
 <template>
   <div class="details container">
-    <h1 class="page-header">{{stop.name}}
+    <h2 class="page-header">{{stop.name}}
       <div class="btn-group float-right" role="group" aria-label="Basic example">
         <router-link class="btn btn-secondary" style="margin-top: 10px"
                      v-bind:to="'/edit/'+stop._id">Editar
@@ -11,7 +11,7 @@
       </div>
       <hr width="100%"/>
 
-    </h1>
+    </h2>
     <div class="container">
       <div class="row">
         <div class="col-4">
@@ -67,8 +67,6 @@
     },
     methods: {
       fetchStop(id) {
-        axios.defaults.headers.get['Content-Type'] = 'application/json;charset=utf-8';
-        axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
         axios.get(`${BASE_URL}stops/` + id)
           .then(resp => {
             this.stop = JSON.parse(JSON.stringify(resp.data));

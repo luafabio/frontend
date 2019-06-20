@@ -1,5 +1,3 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import vueResource from 'vue-resource'
@@ -10,6 +8,7 @@ import StopDetails from './components/StopDetails'
 import Edit from './components/Edit'
 import Buses from './components/Buses'
 import Cover from './components/Cover'
+import Alarms from "./components/Alarms";
 import VeeValidate from 'vee-validate'
 import * as LocationPicker from 'vue2-location-picker'
 import * as VueGoogleMaps from 'vue2-google-maps'
@@ -17,7 +16,7 @@ import BusDetail from "./components/BusDetail";
 
 
 Vue.use(LocationPicker, {
-  installComponents: false, // If true, create it globally
+  installComponents: false,
 });
 
 Vue.use(VueGoogleMaps, {
@@ -45,6 +44,7 @@ const router = new VueRouter({
     {path: '/edit/:id', component: Edit},
     {path: '/buses', component: Buses},
     {path: '/bus/:id', component: BusDetail},
+    {path: '/bings', component: Alarms},
   ]
 });
 
@@ -66,6 +66,9 @@ new Vue({
       </li>
       <li class="nav-item active">
         <router-link class="nav-link" to="/buses">Colectivos</router-link>
+      </li>
+      <li class="nav-item active">
+        <router-link class="nav-link" to="/bings">Alarmas</router-link>
       </li>
       <li class="nav-item active">
         <router-link class="nav-link" to="/about">Nosotros</router-link>

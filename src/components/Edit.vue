@@ -1,7 +1,7 @@
 <template>
   <div class="edit container">
     <Alert v-if="alert" v-bind:message="alert"/>
-    <h1 class="page-header">Editar Parada</h1>
+    <h2 class="page-header">Editar Parada</h2>
     <hr width="100%"/>
     <form v-on:submit="updateStop">
       <div class="container">

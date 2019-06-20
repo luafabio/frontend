@@ -1,7 +1,7 @@
 <template>
   <div class="buses container">
     <Alert v-if="alert" v-bind:message="alert"/>
-    <h1 class="page-header">Colectivos</h1>
+    <h2 class="page-header">Colectivos</h2>
     <br>
 
     <table class="table table-striped">
@@ -11,7 +11,7 @@
         <th>Latitud</th>
         <th>Longitud</th>
         <th>Siguiente Parada</th>
-        <th>ETA Parada</th>
+        <th>ETA Siguiente Parada</th>
         <th>Opciones</th>
       </tr>
       </thead>

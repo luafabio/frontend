@@ -3,7 +3,7 @@
     <Alert v-if="alert" v-bind:message="alert"/>
     <router-link class="btn btn-success float-right" style="margin-top: 10px" to="/add">Agregar Parada</router-link>
 
-    <h1 class="page-header">Paradas - Linea 228</h1>
+    <h2 class="page-header">Paradas - Linea 228</h2>
     <div class="panel-group" id="accordion">
       <div class="panel panel-default">
         <div class="panel-heading">
