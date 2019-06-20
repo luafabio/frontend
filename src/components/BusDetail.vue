@@ -14,6 +14,7 @@
         </div>
         <div class="col-8 ">
           <GmapMap class="my-20 borde"
+                   :center="{ lat: parseFloat(center.lat) || 0, lng:parseFloat(center.lng) || 0 }"
                    v-bind:center="center"
                    v-bind:zoom="15"
                    :options="{zoomControl: false, disableDefaultUi: true, streetViewControl: false, mapTypeControl: false }"
@@ -105,6 +106,7 @@
       bus: function (val) {
         this.markersBus = [];
         this.markersBus.push({position: {lat: Number(val.lat), lng: Number(val.long)}})
+        this.center = {lat: Number(val.lat), lng: Number(val.long)};
       },
     },
     created: function () {
