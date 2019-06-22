@@ -1,7 +1,6 @@
 <template>
   <div class="about container">
-    <h2 class="page-header">Sobre Nosotros</h2>
-    <p>Hermes Project Solutions Systems</p>
+    <h2 class="page-header">Hermes Project Solutions Systems</h2>
     <p>Proyecto Final realizado para la UTN - Facultad Regional Delta</p>
     Integrantes:<ul>
       <li>Luis Fabio</li>
